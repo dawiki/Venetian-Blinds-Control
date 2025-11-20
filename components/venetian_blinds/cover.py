@@ -37,7 +37,6 @@ async def to_code(config):
     var = await cover.new_cover(config)
 
     await cg.register_component(var, config)
-    await cover.register_cover(var, config)
 
     await automation.build_automation(
         var.get_stop_trigger(), [], config[CONF_STOP_ACTION]
