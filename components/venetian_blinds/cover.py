@@ -17,23 +17,19 @@ CONF_ACTUATOR_ACTIVATION_DURATION = "actuator_activation_duration"
 venetian_blinds_ns = cg.esphome_ns.namespace("venetian_blinds")
 VenetianBlinds = venetian_blinds_ns.class_("VenetianBlinds", cover.Cover, cg.Component)
 
-CONFIG_SCHEMA = (
-    cover.cover_schema(VenetianBlinds)
-    .extend(
-        {
-            cv.Required(CONF_OPEN_ACTION): automation.validate_automation(single=True),
-            cv.Required(CONF_OPEN_DURATION): cv.positive_time_period_milliseconds,
-            cv.Required(CONF_CLOSE_ACTION): automation.validate_automation(single=True),
-            cv.Required(CONF_CLOSE_DURATION): cv.positive_time_period_milliseconds,
-            cv.Required(CONF_STOP_ACTION): automation.validate_automation(single=True),
-            cv.Required(CONF_TILT_DURATION): cv.positive_time_period_milliseconds,
-            cv.Optional(
-                CONF_ACTUATOR_ACTIVATION_DURATION, default="0s"
-            ): cv.positive_time_period_milliseconds,
-            cv.Optional(CONF_ASSUMED_STATE, default=True): cv.boolean,
-        }
-    )
-    .extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = cover.cover_schema(VenetianBlinds).extend(
+    {
+        cv.Required(CONF_OPEN_ACTION): automation.validate_automation(single=True),
+        cv.Required(CONF_OPEN_DURATION): cv.positive_time_period_milliseconds,
+        cv.Required(CONF_CLOSE_ACTION): automation.validate_automation(single=True),
+        cv.Required(CONF_CLOSE_DURATION): cv.positive_time_period_milliseconds,
+        cv.Required(CONF_STOP_ACTION): automation.validate_automation(single=True),
+        cv.Required(CONF_TILT_DURATION): cv.positive_time_period_milliseconds,
+        cv.Optional(
+            CONF_ACTUATOR_ACTIVATION_DURATION, default="0s"
+        ): cv.positive_time_period_milliseconds,
+        cv.Optional(CONF_ASSUMED_STATE, default=True): cv.boolean,
+    }
 )
 
 
